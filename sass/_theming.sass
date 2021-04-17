@@ -1,0 +1,170 @@
+@import 'mixins'
+
+//buttons color arrays
+$blue-light: ( default: #3DA9FC, hover: #2da2fb, active: #1e9bfb, border: #0e94fb, disabled: #80c7fd)
+$blue-dark: ( default: #2671aa, hover: #246ba1, active: #226599, border: #206090, disabled: #539ed8)
+$pink-light: ( default: #EF4565, hover: #ed3659, active: #ec284d, border: #C62C48, disabled: #f4869a)
+$pink-dark: ( default: #a83247, hover: #9f2f43, active: #972c3f, border: #8e2a3c, disabled: #ce5b70)
+
+.root
+    //transitions properties
+    --theme-transition-function: ease-in-out
+    --bg-transition: 150ms
+    --fg-transition: 75ms
+    --game-stats-transition: 300ms
+
+    --white-1: #FFFFFE
+    --white-2: #f5f5f5
+    --badge-blue: #007BFF
+    --blue-3: #094067
+    --pale-blue: #C6C6C7
+    --green: #05D784
+    --yellow: #FFA500
+    --gray-0: #EAEAEA
+    --gray-1: #D8D8D8
+    --gray-2: #BBBBBB
+    --gray-3: #8A8A8A
+    --gray-4: #404049
+    --gray-5: #353535
+    --black-0: #000
+    --black-1: #1C1C1E
+    --black-2: #212123
+    --black-3: #2f2f33
+
+    --border-width: 3px
+
+    .btn-blue,
+    .btn-pink
+        @extend .btn
+        //--background styling in .light, .dark
+        color: #fff
+        transition: background-color 100ms ease-out
+
+.light
+    @extend .root
+
+    //=================generic=================\\
+    --main-bg: var(--white-1)
+    --main-txt: var(--blue-3)
+
+    header
+        .logo
+            background-image: url("../assets/pig.svg")
+
+        .btn-pause-control
+            svg
+                path
+                    &:not(#red-play)
+                        fill: var(--blue-3)
+        .btn-restart
+            color: #EF4565
+        .btn-theme
+            #sun
+                display: none
+            #moon
+                display: block
+                path
+                    fill: var(--gray-4)
+
+    //////////////////main/////////////////
+    .btn-blue
+        +btn-style(blue, light)
+    .btn-pink
+        +btn-style(pink, light)
+    ///////////////secondary///////////////
+    .btn-blue[importance="secondary"]
+        +btn-style(blue, light, "secondary")
+    .btn-pink[importance="secondary"]
+        +btn-style(pink, light, "secondary")
+
+    //index.html
+    .main-menu
+        .inner-section
+            border: 3px solid var(--gray-2)
+            &:nth-of-type(2) //character section
+                background-color: var(--gray-0)
+        .disabled
+            border: 3px solid var(--gray-1) !important
+        .character
+            &:not(.selected)
+                &:hover
+                    background-color: var(--gray-1)
+        .selected
+            background-color: var(--gray-2)
+
+    //game.html
+    .game
+        --overlay-bg: var(--white-2)
+        --score-bg: var(--gray-1)
+        .stats-menu
+            .dock
+                background-color: var(--gray-1)
+
+    .about
+        #absurd
+            background-image: url("../assets/absurd.webp")
+
+.dark
+    @extend .root
+
+    //=================generic=================\\
+    --main-bg: var(--black-1)
+    --main-txt: var(--white-2)
+
+    header
+        .logo
+            background-image: url("../assets/pig-pale.svg")
+        .btn-pause-control
+            svg
+                path
+                    &:not(#red-play)
+                        fill: var(--gray-1)
+        .btn-restart
+            color: #FF80A2
+        .btn-theme
+            #sun
+                display: block
+                path
+                    fill: var(--white-1)
+            #moon
+                display: none
+
+    //////////////////main/////////////////
+    .btn-blue
+        +btn-style(blue, dark)
+    .btn-pink
+        +btn-style(pink, dark)
+    ///////////////secondary///////////////
+    .btn-blue[importance="secondary"]
+        +btn-style(blue, dark, "secondary")
+    .btn-pink[importance="secondary"]
+        +btn-style(pink, dark, "secondary")
+
+    //index.html
+    .main-menu
+        .inner-section,
+            border: 3px solid var(--gray-4)
+            &:nth-of-type(2) //character section
+                background-color: var(--black-2)
+        .disabled
+            border: 3px solid var(--gray-3) !important
+        .character
+            &:not(.selected)
+                &:hover
+                    background-color: var(--black-3)
+        .selected
+            background-color: var(--gray-4)
+
+    //game.html
+    .game
+        --overlay-bg: var(--black-2)
+        --score-bg: var(--gray-3)
+        .stats-menu
+            .dock
+                background-color: var(--gray-5)
+
+    .about
+        #pig-pale
+            opacity: 3%
+        #absurd
+            background-image: url("../assets/absurd-pale.webp")

@@ -1,0 +1,116 @@
+@import 'generic'
+@import 'theming'
+@import 'flex-slider'
+
+header
+    .container
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+main
+    @extend .spacer-xl
+    .container
+        p
+            margin-top: 0.5rem
+            opacity: 0.7
+        .section-avatar
+            .div-inner
+                display: grid
+                grid-template-rows: 1fr auto
+                grid-template-columns: repeat(2, auto)
+                grid-gap: 1rem
+                align-items: start
+                .inner-section
+                    border-radius: 10px
+                    padding: 1rem
+                    .characters,
+                    .universes
+                        margin-top: 1rem
+                    &:nth-of-type(1) //universe section
+                        height: 100%
+                        overflow: hidden
+                        .universes
+                            height: inherit
+                            @extend .flex-center
+                            position: relative
+                            img
+                                width: 320px
+                                height: auto
+                            button
+                                @extend .no-border
+                                @extend .flex-center
+                                background-color: #f00
+                                border-radius: 100%
+                                position: absolute
+                                transform: translate(0, -50%)
+                                top: 50%
+                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5)
+                                img
+                                    +set-size(25px, 25px)
+                            #btn-prev
+                                left: 0
+                                img
+                                    transform: rotate(180deg)
+                            #btn-next
+                                right: 0
+                    &:nth-of-type(2) //character section
+                        grid-row: 1/3
+                        grid-column: 2/3
+                        height: 100%
+                        h5
+                            opacity: 0.7
+                        .characters
+                            display: grid
+                            grid-template-rows: repeat(2, 100px)
+                            grid-template-columns: repeat(6, 100px)
+                            justify-content: center
+                            grid-gap: 0.5rem
+                            button
+                                border-radius: 10px
+                                @extend .no-border
+                            .character
+                                background-repeat: no-repeat
+                                background-size: cover
+                                background-position: center
+                            #c-1
+                                grid-row: 1/3
+                                grid-column: 1/3
+                            .disabled
+                                background-size: 50% 50%
+                                filter: brightness(60%)
+                    &:nth-of-type(3) //objective section
+                        display: flex
+                        align-items: center
+                        justify-content: space-between
+                        input[type = number]
+                            border: inherit
+                            background-color: inherit
+                            color: inherit
+                            border-radius: inherit
+                            padding: 0.6rem
+                            font-size: 95%
+                            box-shadow: inset 1.5px 1.5px 5px rgba(0, 0, 0, 0.15)
+                            width: 50%
+                            -moz-appearance: textfield
+                            &::-webkit-outer-spin-button,
+                            &::-webkit-inner-spin-button
+                                -webkit-appearance: none
+                                margin: 0
+                    .error-label
+                        color: #F73131
+                        opacity: 0.8 !important
+                        margin-top: 0.5rem
+                        visibility: hidden
+        .cta
+            display: flex
+            justify-content: flex-end
+            -webkit-justify-content: flex-end
+            -moz-justify-content: flex-end
+            -ms-justify-content: flex-end
+            @extend .spacer-xl
+            padding-bottom: 1rem
+            button
+                display: flex
+
+@import 'queries/_q-index'

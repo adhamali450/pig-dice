@@ -1,0 +1,140 @@
+@import 'mixins'
+
+//boilerplate 
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  outline: none
+
+html
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap')
+  font-family: 'Montserrat', sans-serif
+  +set-size(100%, 100%)
+  overflow: hidden
+
+//genric styling 
+
+body
+  background-color: var(--main-bg)
+  color: var(--main-txt)
+
+  font-size: 18px
+
+  +set-size(inherit, inherit)
+
+  overflow-x: hidden
+
+////typography
+h1, h2, h6
+  font-weight: 400
+h3, h5, input[type = text]
+  font-weight: 500
+h4, strong
+  font-weight: 600
+
+h1
+  font-size: 36px
+p, a
+  font-weight: 500
+
+////container
+.container
+  width: 90%
+  max-width: 1180px
+  margin: 0 auto
+.spacer
+  padding-top: 1.5rem
+.spacer-xl
+  padding-top: 3rem
+
+////helper classes
+
+.flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+////buttons
+a
+  display: inline-block
+  text-decoration: none
+  transition: background-color 150ms ease-in
+  &:focus
+    outline: none
+
+button
+  @extend .clickable
+  background-color: rgba(0, 0, 0, 0)
+
+.btn
+  @extend .clickable
+  @extend .flex-center
+  @extend .btn-with-glyph
+  +gap(1rem, column)
+  font-family: sans-serif
+  font-weight: 600
+
+  padding: 0.7rem 2.5rem
+  border-radius: 7px
+  font-size: 110%
+  z-index: 1000
+
+.btn-with-glyph
+  svg
+    #translucent
+      transition: fill-opacity 100ms ease-in-out
+  &:hover
+    svg
+      #translucent
+        fill-opacity: 0.45
+  &:active
+    svg
+      #translucent
+        fill-opacity: 0.55
+
+.clickable
+  @extend .no-highlight
+  outline: none
+  cursor: pointer
+
+.no-highlight
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  -webkit-tap-highlight-color: transparent
+
+.no-border
+  border: none
+
+.disabled
+  @extend .no-pointer-events
+  opacity: 0.6
+
+.no-pointer-events
+  pointer-events: none
+
+////shared classes
+
+.logo
+  +set-size(80px, calc(80px * 0.618))
+  background-repeat: no-repeat
+  background-size: 100%
+
+.btn-theme
+  @extend .no-border
+  overflow: hidden
+  grid-column: 3/4
+  +set-size(35px, 35px)
+  svg
+    +set-size(inherit, inherit)
+
+h1, h2, h3, h4, h5, h6,
+p, span
+  transition: color var(--fg-transition) ease-in
+
+body, .active, .inner-section, .stats-menu
+  transition: background-color var(--bg-transition) var(--theme-transition-function)

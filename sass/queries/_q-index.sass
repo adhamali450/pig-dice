@@ -1,0 +1,86 @@
+@import '../mixins'
+@import '../generic'
+
+@import 'q-generic'
+
+@media only screen and (max-width: 1180px)
+    main .container  .section-avatar .div-inner .inner-section
+        &:nth-of-type(1)
+            .universes
+                margin-top: 0
+        &:nth-of-type(2)
+            .characters
+                grid-template-rows: repeat(3, 100px)
+                grid-template-columns: repeat(4, 100px)
+        
+
+@media only screen and (max-width: 930px)
+    main .container  .section-avatar .div-inner .inner-section
+        &:nth-of-type(1) //universe section
+            position: relative
+            width: auto
+            .universes
+                width: 250px
+                +absolute-center()
+                margin-top: 1rem
+                .slider-item img
+                    width: inherit
+        &:nth-of-type(2) //cahracters section
+            .characters
+                grid-template-rows: repeat(3, 70px)
+                grid-template-columns: repeat(4, 70px)
+        &:nth-of-type(3) //objective section
+            display: flex
+            align-items: center
+            justify-content: space-between
+            input[type = text]
+                border: inherit
+                background-color: inherit
+                color: inherit
+                border-radius: inherit
+                padding: 0.6rem
+                font-size: 95%
+                width: 40%
+
+@media only screen and (max-width: 700px)
+    main
+        padding-top: 1.5rem
+        text-align: center
+        h1
+            font-size: 28px
+        .container 
+            .section-avatar
+                .div-inner
+                    grid-template-rows: repeat(3, auto)
+                    grid-template-columns: 1fr
+                    grid-gap: 1rem
+                    .inner-section
+                        &:nth-of-type(1) //universe section 
+                            grid-row: 1/2
+                            grid-column: 1/2
+                            .universes
+                                position: relative
+                                margin-top: 0
+                                #btn-prev
+                                    left: -2rem
+                                #btn-next
+                                    right: -2rem
+                        &:nth-of-type(2) //character section 
+                            grid-row: 2/3
+                            grid-column: 1/2
+                            //old layout
+            .cta
+                padding: 1.5rem 0
+                button
+                    flex-grow: 1
+
+@media only screen and (max-width: 370px)
+    main .container  .section-avatar .div-inner .inner-section
+        &:nth-of-type(1)  
+            .universes //universe section
+                width: 180px
+        &:nth-of-type(2)
+            .characters
+                grid-template-rows: repeat(4, 65px)
+                grid-template-columns: repeat(3, 65px)
+        

@@ -1,0 +1,141 @@
+=set-button-style($bg, $txt)
+  background-color: $bg
+  color: $txt
+  border: 3px solid brightness(80)
+  &:hover,
+  &:focus
+    filter: brightness(95%)
+  &:active
+    filter: brightness(85%)
+
+=set-size($width, $height)
+  width: $width
+  height: $height
+
+=gap($gap, $direction)
+  //clearing prev margins (if any)
+  > *
+    margin-right: 0
+    margin-bottom: 0
+
+  @if $direction == row
+    > *
+      margin-bottom: $gap
+      &:last-child
+        margin-bottom: 0
+  @else if $direction == column
+    > *
+      margin-right: $gap
+      &:last-child
+        margin-right: 0
+  @else if $direction == both
+    > *
+      margin-bottom: $gap
+      &:last-child
+        margin-bottom: 0
+    > *
+      margin-right: $gap
+      &:last-child
+        margin-right: 0
+
+=absolute-center()
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+=btn-style($btn, $theme, $importance:"main")
+  @if $theme == light
+    @if $btn == blue
+      @if $importance == "main"
+        background-color: map-get($blue-light, default)
+        border: var(--border-width) solid map-get($blue-light, border)
+        &:hover
+          background-color: map-get($blue-light, hover)
+        &:active
+          background-color: map-get($blue-light, active)
+        .disabled
+          background-color: map-get($blue-light, disabled)
+      @else
+        background-color: transparent
+        color: map-get($blue-light, default)
+        border: var(--border-width) solid map-get($blue-light, default)
+        &:hover
+          color: map-get($blue-light, hover)
+        &:active
+          color: map-get($blue-light, active)
+        .disabled
+          color: map-get($blue-light, disabled)
+        svg
+          path
+            fill: map-get($blue-light, default)
+    @else if $btn == pink
+      @if $importance == "main"
+        background-color: map-get($pink-light, default)
+        border: var(--border-width) solid map-get($pink-light, border)
+        &:hover
+          background-color: map-get($pink-light, hover)
+        &:active
+          background-color: map-get($pink-light, active)
+        .disabled
+          background-color: map-get($pink-light, disabled)
+      @else
+        background-color: transparent
+        color: map-get($pink-light, default)
+        border: var(--border-width) solid map-get($pink-light, default)
+        &:hover
+          color: map-get($pink-light, hover)
+        &:active
+          color: map-get($pink-light, active)
+        .disabled
+          color: map-get($pink-light, disabled)
+        svg
+          path
+            fill: map-get($pink-light, default)
+  @else if $theme == dark
+    @if $btn == blue
+      @if $importance == "main"
+        background-color: map-get($blue-dark, default)
+        border: var(--border-width) solid map-get($blue-dark, border)
+        &:hover
+          background-color: map-get($blue-dark, hover)
+        &:active
+          background-color: map-get($blue-dark, active)
+        .disabled
+          background-color: map-get($blue-dark, disabled)
+      @else
+        background-color: transparent
+        color: map-get($blue-dark, default)
+        border: var(--border-width) solid map-get($blue-dark, default)
+        &:hover
+          color: map-get($blue-dark, hover)
+        &:active
+          color: map-get($blue-dark, active)
+        .disabled
+          color: map-get($blue-dark, disabled)
+        svg
+          path
+            fill: map-get($blue-dark, default)
+    @else if $btn == pink
+      @if $importance == "main"
+        background-color: map-get($pink-dark, default)
+        border: var(--border-width) solid map-get($pink-dark, border)
+        &:hover
+          background-color: map-get($pink-dark, hover)
+        &:active
+          background-color: map-get($pink-dark, active)
+        .disabled
+          background-color: map-get($pink-dark, disabled)
+      @else
+        background-color: transparent
+        color: map-get($pink-dark, default)
+        border: var(--border-width) solid map-get($pink-dark, default)
+        &:hover
+          color: map-get($pink-dark, hover)
+        &:active
+          color: map-get($pink-dark, active)
+        .disabled
+          color: map-get($pink-dark, disabled)
+        svg
+          path
+            fill: map-get($pink-dark, default)

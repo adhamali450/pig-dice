@@ -1,0 +1,341 @@
+@import 'generic'
+@import 'theming'
+
+body
+  overflow-y: scroll
+  scroll-snap-type: y mandatory
+  scroll-snap-points-y: repeat(100vh)
+  min-height: 100vh
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available !important
+  //fixes jaggy snap scrolling on edge/chrome
+  transform: translateZ(0)
+
+html
+  height: -webkit-fill-available
+
+.game,
+.about
+  @extend .spacer
+  scroll-snap-align: start
+
+.game
+  height: 100%
+  display: flex
+  flex-direction: column
+  position: relative
+
+  header
+    .container
+      display: grid
+      grid-template-columns: repeat(3, auto)
+      align-items: center
+      grid-gap: 2rem
+      .logo
+        justify-self: left
+      .control-panel
+        justify-self: center
+        display: grid
+        grid-gap: 2rem
+        grid-template-rows: 1fr
+        grid-template-columns: 1fr auto
+        .timing
+          @extend .flex-center
+          align-items: center
+          +gap(0.75rem, column)
+          .status-dot
+            +set-size(12px, 12px)
+            border-radius: 25px
+            background-color: var(--green)
+          .counter
+            width: 45px
+            text-align: right
+          .btn-pause-control
+            #icon-pause
+              display: block
+            #icon-resume
+              display: none
+        .btn-restart
+          font-size: 90%
+      .btn-theme
+        justify-self: right
+main
+  padding-top: 3rem
+  height: inherit
+  position: relative
+  overflow-y: hidden
+
+  .stats-menu
+    position: absolute
+    height: inherit
+    //by default when not visible-
+    transform: translate(-50%, 100%)
+    will-change: transform !important
+    left: 50%
+    bottom: 0
+    height: auto
+    background-color var(--fg-transition) ease-in
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.15)
+    z-index: 99999
+    background-color: var(--overlay-bg)
+    width: 95vw
+    border-radius: 50px 50px 0 0
+    .dock
+      position: absolute
+      display: inline-block
+      transform: translate(-50%, 0)
+      top: 10px
+      left: 50%
+      width: 50px
+      height: 6px
+      border-radius: 20px
+    .container
+      display: flex
+      flex-direction: column
+      padding: 3rem 0 3rem 0
+      +gap(2rem, row)
+      .scores
+        position: relative
+        display: flex
+        justify-content: space-between
+        align-items: center
+        span
+          font-size: 120%
+          font-weight: 600
+        .stats-player
+          position: relative
+          +set-size(200px, auto)
+          .stats-player-avatar
+            +set-size(inherit, inherit)
+          .crown
+            +set-size(120%, auto)
+            position: absolute
+            transform: translate(-50%, -50%)
+            left: 50%
+            top: 60%
+          .stats-badge
+            position: absolute
+            top: 100%
+            left: 100%
+            transform: translate(-90%, -90%)
+            +set-size(60px, 60px)
+            border-radius: 100%
+        #winner
+          .stats-badge
+            img
+              opacity: 0.4
+        #loser
+          .stats-badge
+            display: grid
+            place-items: center
+            color: #fff
+            background-color: #EF4565
+        .inner-sword
+          display: flex
+          flex-direction: column
+          align-items: center
+          +gap(1rem, row)
+          #sword
+            +set-size(115px, 115px)
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center center
+            background-image: url("../assets/swords-fluent.svg")
+          span
+            display: inline-block
+            color: #fff
+            padding: 0.25rem 0.75rem
+            background-color: #EF4565
+            border-radius: 20px
+      .quote
+        h1
+          &:last-child
+            font-weight: 900
+            font-size: 250%
+      .options
+        display: flex
+        +gap(0.75rem, column)
+
+  .non-stats
+    height: inherit
+    display: flex
+    flex-direction: column
+    +gap(1.5rem, row)
+    transform: translate(0, 0) !important
+
+  .main-field
+    display: grid
+    grid-template-columns: 3fr 4fr 3fr
+
+    .player
+      @extend .flex-center
+      flex-direction: column
+      //fixes a transition bug
+      transition: none
+      +gap(0.5rem, row)
+      .player-avatar
+        +set-size(150px, 150px)
+      .premount-style
+        background-color: var(--gray-1)
+        border-radius: 10px
+      .score
+        width: 90%
+        display: flex
+        flex-direction: column
+        +gap(0.5rem, row)
+        .score-bar
+          height: 8px
+          border-radius: 5px
+          background-color: var(--score-bg)
+          span
+            display: block
+            height: 100%
+            transition: width 100ms ease-out
+            border-radius: 5px
+            background-color: var(--green)
+        .score-written
+          display: flex
+          align-items: center
+          justify-content: space-between
+          +gap(1rem, column)
+          .current-score-badge
+            padding: 0.25rem 0.5rem
+            border-radius: 5px
+            background-color: var(--badge-blue)
+            color: var(--white-1)
+            visibility: hidden
+            font-weight: 500
+    .active
+      padding: 2rem 0
+      background-color: var(--overlay-bg)
+      border-radius: 10px
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15)
+      transition: background-color var(--bg-transition) var(--theme-transition-function),
+      box-shadow var(--bg-transition) var(--theme-transition-function) !important
+      .score
+        .score-written
+          .current-score-badge
+            visibility: visible
+    #dice-container
+      @extend .no-highlight
+      justify-self: center
+      +set-size(240px, 240px)
+      cursor: pointer
+
+  .game-buttons
+    width: 400px
+    display: flex
+    flex-wrap: nowrap
+    +gap(0.75rem, column)
+    margin: 0 auto !important
+    .btn
+      flex-grow: 1
+
+.game
+  header .logo, header .control-panel, .non-stats
+    transition: filter var(--game-stats-transition) linear
+    will-change: filter
+
+#mouse-wheel-animation
+  pointer-events: none
+  position: absolute
+  +set-size(35px, 30px)
+  transform: translate(35%, -50%) rotate(180deg)
+  bottom: 1rem
+  right: 50%
+  filter: invert(60%)
+
+.about
+  height: 100vh
+  font-size: 18px
+  position: relative
+  .container
+    display: grid
+    grid-template-rows: repeat(2, auto)
+    grid-template-columns: repeat(2, 1fr)
+    +gap(3rem, both)
+    position: relative
+    .btn
+      font-weight: 400
+      display: inline-block
+      padding: 0
+      svg
+        +set-size(180px, auto)
+    h2
+      font-weight: 400
+      font-size: 140%
+
+    .me
+      grid-row: 1/2
+      grid-column: 1/2
+      #heart-emoji
+        +set-size(30px, 30px)
+        margin: 0 8px
+      h2
+        display: flex
+        justify-content: left
+        align-items: center
+
+    .github
+      grid-row: 1/2
+      grid-column: 2/3
+
+    .social
+      grid-row: 2/3
+      grid-column: 1/2
+      .buttons
+        *
+          margin-right: 5px
+        svg
+          +set-size(35px, 35px)
+    .buttons
+      margin-top: 1rem
+
+    #quote
+      position: absolute
+      bottom: 2rem
+      left: 0
+  #absurd,
+  #pig-pale,
+    position: absolute
+  #absurd
+    +set-size(100%, 60%)
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: bottom right 2rem
+    bottom: 0
+    right: 0
+    z-index: -1
+  #pig-pale
+    +set-size(45vw, calc(45vw * 0.618))
+    top: 25%
+    left: 3.5rem
+    opacity: 20%
+    z-index: -1
+
+.paused
+  .game
+    header
+      .container
+        .control-panel
+          .timing
+            .status-dot
+              background-color: var(--yellow)
+          .btn-pause-control
+            #icon-pause
+              display: none
+            #icon-resume
+              display: block
+
+//skeleton before mounting
+[v-cloak]
+  *
+    display: none
+  &::before
+    content: ' '
+    width: 75px
+    height: 11px
+    border-radius: 10px
+    background-color: var(--gray-1)
+
+@import 'queries/q-game'

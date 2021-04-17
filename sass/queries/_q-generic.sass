@@ -1,0 +1,11 @@
+//Shared between html pages: logo and theme button
+    
+@media only screen and (max-width: 565px)
+    header .container
+        .logo
+            +set-size(60px, calc(60px * 0.618))
+
+//for Galaxy Fold small screen
+@media only screen and (max-width: 325px)
+    .btn-theme
+        +set-size(25px, 25px)
