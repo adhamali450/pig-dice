@@ -17,26 +17,28 @@ const characters = {
     "grant",
     "greg",
     "rose-quartz",
-    //easter-egg: character based on theme (on loading only)
-    localStorage.getItem("theme"),
-    "ruby",
     "pearl",
+    "jasper-universe",
+    "ruby",
+    "peridot-universe",
   ],
 };
 
-function getUniverseStr(universeIndex){
+function getUniverseStr(universeIndex) {
   return universes[universeIndex];
 }
 
-function getCharacterStr(unvierseIndex, index){
+function getCharacterStr(unvierseIndex, index) {
   return characters[getUniverseStr(unvierseIndex)][index];
 }
 
 function getCharacterPath(universeIndex, index) {
   const universeStr = getUniverseStr(universeIndex);
-  return "../assets/" + universeStr + "/" + characters[universeStr][index] + ".svg";
+  return (
+    "../assets/" + universeStr + "/" + characters[universeStr][index] + ".svg"
+  );
 }
 
-function getDecoratedCharacterName(characterName){
-  return utils.initCap(characterName.replace('-', ' ')); 
+function getDecoratedCharacterName(characterName) {
+  return utils.initCap(characterName.replace("-", " "));
 }
