@@ -1,4 +1,4 @@
-# [Pig Dice](https://pigdice.games)
+# 🎲  [Pig Dice](https://pigdice.games)
 
 ### The good old pig dice game, except highly customizable
 
