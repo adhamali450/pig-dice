@@ -1,4 +1,4 @@
-# 🎲  [Pig Dice](https://pigdice.games)
+# 🎲  [Pig Dice](https://pig-dice-game.vercel.app/)
 
 ### The good old pig dice game, except highly customizable
 
